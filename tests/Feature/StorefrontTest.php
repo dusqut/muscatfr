@@ -6,6 +6,13 @@ use Tests\TestCase;
 
 class StorefrontTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        config(['launch.enabled' => false]);
+    }
+
     public function test_homepage_redirects_to_the_english_storefront(): void
     {
         $this->get('/')
