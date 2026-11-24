@@ -39,7 +39,7 @@ class AdminAuthController
                 ->withErrors(['email' => __('admin.invalid_credentials')]);
         }
 
-        return redirect()->intended(route('admin.products.index'));
+        return redirect()->intended(route('admin.dashboard'));
     }
 
     public function logout(Request $request): RedirectResponse

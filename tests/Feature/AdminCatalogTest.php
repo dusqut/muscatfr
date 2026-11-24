@@ -20,18 +20,27 @@ class AdminCatalogTest extends TestCase
 
     public function test_guests_are_redirected_to_admin_login(): void
     {
+        $this->get(route('admin.dashboard'))
+            ->assertRedirect(route('admin.login'));
+
         $this->get(route('admin.products.index'))
             ->assertRedirect(route('admin.login'));
     }
 
     public function test_non_admin_users_cannot_manage_catalog(): void
     {
-        $this->actingAs($this->user('customer'))
+        $customer = $this->user('customer');
+
+        $this->actingAs($customer)
+            ->get(route('admin.dashboard'))
+            ->assertForbidden();
+
+        $this->actingAs($customer)
             ->get(route('admin.products.index'))
             ->assertForbidden();
     }
 
-    public function test_admin_can_sign_in_and_view_draft_sample_products(): void
+    public function test_admin_can_sign_in_to_dashboard_and_view_sidebar_sections(): void
     {
         $this->seed(CatalogSampleSeeder::class);
         $admin = $this->user('admin');
@@ -39,12 +48,55 @@ class AdminCatalogTest extends TestCase
         $this->post(route('admin.login.submit'), [
             'email' => $admin->email,
             'password' => 'catalog-test-password',
-        ])->assertRedirect(route('admin.products.index'));
+        ])->assertRedirect(route('admin.dashboard'));
+
+        $this->get(route('admin.home'))
+            ->assertRedirect(route('admin.dashboard'));
+
+        $response = $this->get(route('admin.dashboard'))
+            ->assertOk()
+            ->assertSee('Overview')
+            ->assertSee('Demo Oud 01');
+
+        foreach ([
+            'DASHBOARD',
+            'ORDERS &amp; FULFILMENT',
+            'PRODUCT CATALOGUE',
+            'INVENTORY',
+            'CUSTOMERS',
+            'MARKETING',
+            'STOREFRONT &amp; CONTENT',
+            'PAYMENTS &amp; FINANCE',
+            'REPORTS &amp; ANALYTICS',
+            'SUPPORT',
+            'SETTINGS &amp; ADMINISTRATION',
+            'Suppliers &amp; Purchase Orders',
+            'Phase 2',
+            'Loyalty &amp; Referral Programme',
+            'Later',
+        ] as $expected) {
+            $response->assertSee($expected, false);
+        }
 
         $this->get(route('admin.products.index'))
             ->assertOk()
             ->assertSee('Demo Oud 01')
             ->assertSee('Sample');
+    }
+
+    public function test_all_admin_sidebar_routes_render_successfully(): void
+    {
+        $this->seed(CatalogSampleSeeder::class);
+        $this->actingAs($this->user('admin'));
+
+        foreach (config('admin_navigation') as $section) {
+            foreach ($section['items'] as $item) {
+                $url = route($item['route'], $item['route_params'] ?? []);
+                $this->get($url)
+                    ->assertOk()
+                    ->assertSee($item['label']);
+            }
+        }
     }
 
     public function test_admin_can_create_a_bilingual_product_with_multiple_variants(): void

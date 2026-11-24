@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\WorkspaceController;
 use App\Http\Controllers\LaunchAccessController;
 use App\Http\Controllers\Storefront\HomeController;
 use App\Http\Middleware\RequireLaunchAccess;
@@ -17,8 +19,34 @@ Route::prefix('admin')->name('admin.')->group(function (): void {
         ->name('logout');
 
     Route::middleware(['auth', 'catalog.admin'])->group(function (): void {
-        Route::redirect('/', '/admin/products')->name('home');
+        Route::redirect('/', '/admin/dashboard')->name('home');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard/notifications', [DashboardController::class, 'notifications'])->name('dashboard.notifications');
+
         Route::resource('products', ProductController::class)->except(['show']);
+
+        Route::get('/catalog/categories', [WorkspaceController::class, 'categories'])->name('catalog.categories');
+        Route::get('/catalog/brands', [WorkspaceController::class, 'brands'])->name('catalog.brands');
+
+        Route::get('/inventory/stock-overview', [WorkspaceController::class, 'stockOverview'])->name('inventory.stock-overview');
+        Route::get('/inventory/low-stock', [WorkspaceController::class, 'lowStock'])->name('inventory.low-stock');
+
+        Route::get('/settings/users-roles', [WorkspaceController::class, 'usersRoles'])->name('settings.users-roles');
+
+        Route::get('/{section}/{slug}', [WorkspaceController::class, 'module'])
+            ->whereIn('section', [
+                'orders',
+                'catalog',
+                'inventory',
+                'customers',
+                'marketing',
+                'storefront',
+                'finance',
+                'reports',
+                'support',
+                'settings',
+            ])
+            ->name('module');
     });
 });
 
