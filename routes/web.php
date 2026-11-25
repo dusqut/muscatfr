@@ -5,7 +5,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\WorkspaceController;
 use App\Http\Controllers\LaunchAccessController;
+use App\Http\Controllers\Storefront\CatalogController;
 use App\Http\Controllers\Storefront\HomeController;
+use App\Http\Controllers\Storefront\StoreInfoController;
 use App\Http\Middleware\RequireLaunchAccess;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +34,8 @@ Route::prefix('admin')->name('admin.')->group(function (): void {
         Route::get('/inventory/low-stock', [WorkspaceController::class, 'lowStock'])->name('inventory.low-stock');
 
         Route::get('/settings/users-roles', [WorkspaceController::class, 'usersRoles'])->name('settings.users-roles');
+        Route::get('/storefront/navigation', [WorkspaceController::class, 'storefrontSettings'])->name('storefront.navigation');
+        Route::post('/storefront/navigation', [WorkspaceController::class, 'updateStorefrontSettings'])->name('storefront.navigation.update');
 
         Route::get('/{section}/{slug}', [WorkspaceController::class, 'module'])
             ->whereIn('section', [
@@ -62,7 +66,26 @@ Route::post('/launch-access/{locale?}', [LaunchAccessController::class, 'authent
 Route::middleware(RequireLaunchAccess::class)->group(function (): void {
     Route::redirect('/', '/en');
 
-    Route::get('/{locale}', HomeController::class)
+    Route::prefix('{locale}')
         ->whereIn('locale', ['en', 'ar'])
-        ->name('store.home');
+        ->group(function (): void {
+            Route::get('/', HomeController::class)->name('store.home');
+            Route::get('/shop', [CatalogController::class, 'shop'])->name('store.shop');
+            Route::get('/new-in', [CatalogController::class, 'newIn'])->name('store.new-in');
+            Route::get('/brands', [CatalogController::class, 'brands'])->name('store.brands');
+            Route::get('/brands/{slug}', [CatalogController::class, 'brandShow'])->name('store.brands.show');
+            Route::get('/oud-arabian', [CatalogController::class, 'oudArabian'])->name('store.oud-arabian');
+            Route::get('/best-sellers', [CatalogController::class, 'bestSellers'])->name('store.best-sellers');
+            Route::get('/gifts', [CatalogController::class, 'gifts'])->name('store.gifts');
+            Route::get('/offers', [CatalogController::class, 'offers'])->name('store.offers');
+            Route::get('/products/{slug}', [CatalogController::class, 'productShow'])->name('store.products.show');
+            Route::get('/search/suggestions', [CatalogController::class, 'suggestions'])->name('store.search.suggestions');
+
+            Route::get('/stores', [StoreInfoController::class, 'stores'])->name('store.stores');
+            Route::get('/track-order', [StoreInfoController::class, 'trackOrder'])->name('store.track-order');
+            Route::get('/support', [StoreInfoController::class, 'support'])->name('store.support');
+            Route::get('/account', [StoreInfoController::class, 'account'])->name('store.account');
+            Route::get('/wishlist', [StoreInfoController::class, 'wishlist'])->name('store.wishlist');
+            Route::get('/bag', [StoreInfoController::class, 'bag'])->name('store.bag');
+        });
 });

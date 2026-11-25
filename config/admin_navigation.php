@@ -315,11 +315,10 @@ return [
             [
                 'key' => 'navigation-menus',
                 'label' => 'Navigation & Menus',
-                'route' => 'admin.module',
-                'route_params' => ['section' => 'storefront', 'slug' => 'navigation-menus'],
-                'status' => 'planned',
-                'description' => 'Configure header links, mega-menu columns, and footer links for EN & AR.',
-                'highlights' => ['Drag-and-drop menu ordering', 'Bilingual labels', 'Visibility toggles'],
+                'route' => 'admin.storefront.navigation',
+                'match' => ['admin.storefront.navigation'],
+                'status' => 'live',
+                'description' => 'Configure announcement bar copy (EN/AR), free-delivery threshold, WhatsApp support, and seasonal gift visibility.',
             ],
             [
                 'key' => 'seo-settings',

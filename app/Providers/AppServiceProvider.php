@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Support\AdminNavigation;
+use App\Support\StorefrontNavigation;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +18,23 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('admin.layout', function ($view): void {
             $view->with('adminNavigation', AdminNavigation::sidebar());
+        });
+
+        View::composer('storefront.*', function ($view): void {
+            if (in_array($view->getName(), ['storefront.launch', 'storefront.launch-access'], true)) {
+                return;
+            }
+
+            $data = $view->getData();
+            if (isset($data['storeNav'])) {
+                return;
+            }
+
+            $locale = in_array($data['locale'] ?? null, ['en', 'ar'], true)
+                ? $data['locale']
+                : (in_array(App::getLocale(), ['en', 'ar'], true) ? App::getLocale() : 'en');
+
+            $view->with('storeNav', StorefrontNavigation::forLocale($locale));
         });
     }
 }
