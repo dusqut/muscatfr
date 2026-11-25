@@ -72,8 +72,11 @@
 
             {{-- Brand logo --}}
             <a class="wordmark sf-logo" href="{{ route('store.home', ['locale' => $locale]) }}" aria-label="{{ __('store.navigation.home') }}">
-                <span class="wordmark-name">MUSCAT</span>
-                <span class="wordmark-subtitle">FRAGRANCES</span>
+                <img class="sf-brand-mark" src="{{ asset('images/logo.webp') }}" alt="" width="40" height="40">
+                <span class="wordmark-text">
+                    <span class="wordmark-name">MUSCAT</span>
+                    <span class="wordmark-subtitle">FRAGRANCES</span>
+                </span>
             </a>
 
             {{-- Desktop centered search with live autocomplete --}}
@@ -507,9 +510,12 @@
            "
            x-data="{ openSection: null }">
         <div class="sf-drawer-header">
-            <a class="wordmark" href="{{ route('store.home', ['locale' => $locale]) }}" @click="setMobile(false)">
-                <span class="wordmark-name">MUSCAT</span>
-                <span class="wordmark-subtitle">FRAGRANCES</span>
+            <a class="wordmark sf-logo" href="{{ route('store.home', ['locale' => $locale]) }}" @click="setMobile(false)">
+                <img class="sf-brand-mark" src="{{ asset('images/logo.webp') }}" alt="" width="34" height="34">
+                <span class="wordmark-text">
+                    <span class="wordmark-name">MUSCAT</span>
+                    <span class="wordmark-subtitle">FRAGRANCES</span>
+                </span>
             </a>
             <button type="button" class="sf-drawer-close" @click="setMobile(false)" aria-label="{{ __('store.navigation.close_menu') }}">×</button>
         </div>

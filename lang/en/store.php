@@ -5,7 +5,7 @@ return [
         'title' => 'Muscat Fragrances — Find your signature scent',
         'description' => 'Discover a more personal approach to fragrance with Muscat Fragrances.',
     ],
-    'announcement' => 'Complimentary delivery across Muscat on orders above OMR 35',
+    'announcement' => 'Complimentary delivery across Muscat on orders above OMR 40',
     'navigation' => [
         'home' => 'Muscat Fragrances home',
         'aria_label' => 'Main navigation',

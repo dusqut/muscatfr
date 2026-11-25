@@ -64,6 +64,8 @@ class StorefrontTest extends TestCase
     {
         $this->get('/en')
             ->assertOk()
+            ->assertSee('OMR 40')
+            ->assertSee('images/logo.webp')
             ->assertSee('Search perfumes, brands, products...')
             ->assertSee('New In')
             ->assertSee('Shop')

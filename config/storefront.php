@@ -4,11 +4,11 @@ return [
     'currency' => 'OMR',
     'announcement' => [
         'enabled' => env('STORE_ANNOUNCEMENT_ENABLED', true),
-        'en' => env('STORE_ANNOUNCEMENT_EN', 'Complimentary delivery across Muscat on orders above OMR 35 · Discover your signature scent'),
-        'ar' => env('STORE_ANNOUNCEMENT_AR', 'توصيل مجاني في مسقط للطلبات فوق ٣٥ ر.ع. · اكتشفوا عطركم المميّز'),
+        'en' => env('STORE_ANNOUNCEMENT_EN', 'Complimentary delivery across Muscat on orders above OMR 40 · Discover your signature scent'),
+        'ar' => env('STORE_ANNOUNCEMENT_AR', 'توصيل مجاني في مسقط للطلبات فوق ٤٠ ر.ع. · اكتشفوا عطركم المميّز'),
         'url_path' => '/shop',
     ],
-    'free_delivery_threshold_omr' => (float) env('STORE_FREE_DELIVERY_OMR', 35),
+    'free_delivery_threshold_omr' => (float) env('STORE_FREE_DELIVERY_OMR', 40),
     'support' => [
         'whatsapp_number' => env('STORE_WHATSAPP_NUMBER', '+96800000000'),
         'email' => env('STORE_SUPPORT_EMAIL', 'care@muscatfragrances.com'),

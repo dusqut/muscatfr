@@ -42,7 +42,7 @@
             <div class="admin-form-grid">
                 <div class="admin-field">
                     <label for="free_delivery_threshold_omr">Free Delivery Threshold (OMR)</label>
-                    <input id="free_delivery_threshold_omr" name="free_delivery_threshold_omr" type="number" step="0.5" min="0" value="{{ old('free_delivery_threshold_omr', $settings['free_delivery_threshold_omr'] ?? 35) }}" required>
+                    <input id="free_delivery_threshold_omr" name="free_delivery_threshold_omr" type="number" step="0.5" min="0" value="{{ old('free_delivery_threshold_omr', $settings['free_delivery_threshold_omr'] ?? 40) }}" required>
                 </div>
                 <div class="admin-field">
                     <label for="whatsapp_number">WhatsApp Concierge Number</label>

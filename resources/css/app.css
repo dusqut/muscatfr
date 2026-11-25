@@ -287,8 +287,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--olive); outline
     justify-content: space-between; border-bottom: 1px solid var(--line); position: relative; z-index: 3;
 }
 .wordmark { display: inline-flex; flex-direction: column; align-items: center; gap: 3px; }
-.wordmark-name { font: 19px/1 Arial, sans-serif; letter-spacing: .26em; }
-.wordmark-subtitle { font: 7px/1 Arial, sans-serif; letter-spacing: .43em; padding-inline-start: .43em; }
+.wordmark-text { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; }
+.wordmark-name { font: 19px/1 Arial, sans-serif; letter-spacing: .24em; }
+.wordmark-subtitle { font: 10.5px/1 Arial, sans-serif; letter-spacing: .22em; padding-inline-start: .22em; }
+.sf-logo { flex-direction: row; align-items: center; gap: 11px; }
+.sf-logo .wordmark-text { align-items: flex-start; }
+.sf-logo .wordmark-subtitle { padding-inline-start: 0; }
+.sf-brand-mark { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: block; }
 .site-nav { display: flex; align-items: center; gap: clamp(22px, 3.3vw, 52px); }
 .site-nav a { font: 11px/1.4 Arial, sans-serif; letter-spacing: .035em; }
 .site-nav a:hover, .text-link:hover { color: var(--olive); }
@@ -699,7 +704,9 @@ h1, h2, h3, p { margin-top: 0; }
     .launch-message { font-size: 13px; }
     .launch-developer { margin-top: 35px; }
     .site-header { height: 72px; padding-inline: 6%; }
-    .wordmark-name { font-size: 17px; }
+    .wordmark-name { font-size: 16px; letter-spacing: .2em; }
+    .wordmark-subtitle { font-size: 9.5px; letter-spacing: .18em; }
+    .sf-brand-mark { width: 34px; height: 34px; }
     .menu-toggle { width: 38px; height: 38px; padding: 10px 6px; display: flex; flex-direction: column; justify-content: center; gap: 6px; border: 0; background: transparent; }
     .menu-toggle span { display: block; width: 24px; height: 1px; background: var(--ink); }
     .site-nav { position: absolute; top: 71px; inset-inline: 0; padding: 23px 6% 27px; display: none; flex-direction: column; align-items: flex-start; gap: 21px; background: var(--paper); border-bottom: 1px solid var(--line); }
