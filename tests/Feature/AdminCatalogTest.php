@@ -220,6 +220,16 @@ class AdminCatalogTest extends TestCase
             ->assertDontSee('Catalog administration');
     }
 
+    public function test_admin_and_storefront_domains_are_isolated(): void
+    {
+        $this->assertSame('http://manage.localhost/login', route('admin.login'));
+        $this->assertSame('http://manage.localhost/dashboard', route('admin.dashboard'));
+
+        $this->get('http://localhost/admin')->assertNotFound();
+        $this->get('http://localhost/admin/login')->assertNotFound();
+        $this->get('http://manage.localhost/en')->assertNotFound();
+    }
+
     public function test_admin_header_search_and_account_pages_work(): void
     {
         $this->seed(CatalogSampleSeeder::class);

@@ -220,7 +220,7 @@
             </a>
 
             <a class="admin-storefront-btn"
-               href="{{ url('/') }}"
+               href="{{ config('app.url') }}"
                @if ($prefs['open_new_tab_storefront'] ?? true) target="_blank" rel="noopener" @endif
                aria-label="View Storefront"
                title="View Storefront">

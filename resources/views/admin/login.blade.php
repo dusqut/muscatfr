@@ -37,7 +37,7 @@
 
             <button class="admin-primary-button" type="submit">{{ __('admin.login') }}</button>
         </form>
-        <a class="admin-back-link" href="/">{{ __('admin.back_to_site') }}</a>
+        <a class="admin-back-link" href="{{ config('app.url') }}">{{ __('admin.back_to_site') }}</a>
     </main>
 </body>
 </html>

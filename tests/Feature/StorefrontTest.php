@@ -229,12 +229,12 @@ class StorefrontTest extends TestCase
             ])
             ->assertRedirect(route('admin.storefront.navigation'));
 
-        $this->get('/en')
+        $this->get('http://localhost/en')
             ->assertOk()
             ->assertSee('Ramadan Evening Delivery Across Muscat')
             ->assertSee('Ramadan Gifts');
 
-        $this->get('/ar')
+        $this->get('http://localhost/ar')
             ->assertOk()
             ->assertSee('توصيل مسائي خاص في مسقط خلال رمضان')
             ->assertSee('هدايا رمضان');

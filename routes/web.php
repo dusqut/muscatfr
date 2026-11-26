@@ -9,10 +9,11 @@ use App\Http\Controllers\LaunchAccessController;
 use App\Http\Controllers\Storefront\CatalogController;
 use App\Http\Controllers\Storefront\HomeController;
 use App\Http\Controllers\Storefront\StoreInfoController;
+use App\Http\Middleware\EnsureStorefrontHost;
 use App\Http\Middleware\RequireLaunchAccess;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->name('admin.')->group(function (): void {
+Route::domain((string) config('app.admin_domain'))->name('admin.')->group(function (): void {
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AdminAuthController::class, 'login'])
         ->middleware('throttle:5,1')
@@ -22,7 +23,7 @@ Route::prefix('admin')->name('admin.')->group(function (): void {
         ->name('logout');
 
     Route::middleware(['auth', 'catalog.admin'])->group(function (): void {
-        Route::redirect('/', '/admin/dashboard')->name('home');
+        Route::redirect('/', '/dashboard')->name('home');
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/dashboard/notifications', [DashboardController::class, 'notifications'])->name('dashboard.notifications');
         Route::get('/search', [AdminAccountController::class, 'search'])->name('search');
@@ -63,16 +64,17 @@ Route::prefix('admin')->name('admin.')->group(function (): void {
     });
 });
 
-Route::get('/launch-access/{locale?}', [LaunchAccessController::class, 'show'])
-    ->where('locale', 'en|ar')
-    ->name('launch.access');
+Route::middleware(EnsureStorefrontHost::class)->group(function (): void {
+    Route::get('/launch-access/{locale?}', [LaunchAccessController::class, 'show'])
+        ->where('locale', 'en|ar')
+        ->name('launch.access');
 
-Route::post('/launch-access/{locale?}', [LaunchAccessController::class, 'authenticate'])
-    ->where('locale', 'en|ar')
-    ->middleware('throttle:5,1')
-    ->name('launch.authenticate');
+    Route::post('/launch-access/{locale?}', [LaunchAccessController::class, 'authenticate'])
+        ->where('locale', 'en|ar')
+        ->middleware('throttle:5,1')
+        ->name('launch.authenticate');
 
-Route::middleware(RequireLaunchAccess::class)->group(function (): void {
+    Route::middleware(RequireLaunchAccess::class)->group(function (): void {
     Route::redirect('/', '/en');
 
     Route::prefix('{locale}')
@@ -110,4 +112,5 @@ Route::middleware(RequireLaunchAccess::class)->group(function (): void {
                 ])
                 ->name('store.page');
         });
+    });
 });

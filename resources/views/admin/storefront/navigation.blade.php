@@ -8,7 +8,7 @@
             <p class="admin-eyebrow">STOREFRONT &amp; CONTENT</p>
             <h1>Navigation &amp; Menus</h1>
         </div>
-        <a class="admin-secondary-button" href="{{ url('/en') }}" target="_blank" rel="noopener">Preview Storefront</a>
+        <a class="admin-secondary-button" href="{{ rtrim((string) config('app.url'), '/') . '/en' }}" target="_blank" rel="noopener">Preview Storefront</a>
     </div>
 
     <form class="admin-product-form" method="POST" action="{{ route('admin.storefront.navigation.update') }}">

@@ -5,6 +5,10 @@ return [
     'env' => env('APP_ENV', 'production'),
     'debug' => (bool) env('APP_DEBUG', false),
     'url' => env('APP_URL', 'http://localhost'),
+    'admin_domain' => env(
+        'ADMIN_DOMAIN',
+        'manage.' . (parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST) ?: 'localhost')
+    ),
     'timezone' => env('APP_TIMEZONE', 'Asia/Muscat'),
     'locale' => env('APP_LOCALE', 'en'),
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
