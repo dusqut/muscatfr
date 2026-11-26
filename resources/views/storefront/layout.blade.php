@@ -27,16 +27,6 @@
         @yield('content')
     </main>
 
-    <footer class="site-footer">
-        <a class="wordmark footer-wordmark" href="{{ route('store.home', ['locale' => $locale]) }}">
-            <span class="wordmark-name">MUSCAT</span>
-            <span class="wordmark-subtitle">FRAGRANCES</span>
-        </a>
-        <p>{{ __('store.footer.tagline') }}</p>
-        <div class="footer-meta">
-            <span>{{ __('store.footer.location') }}</span>
-            <span>{{ __('store.footer.copyright', ['year' => now()->year]) }}</span>
-        </div>
-    </footer>
+    @include('storefront.partials.footer')
 </body>
 </html>

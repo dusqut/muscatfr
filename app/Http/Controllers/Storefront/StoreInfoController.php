@@ -16,7 +16,7 @@ class StoreInfoController
         return view('storefront.stores', [
             'locale' => $locale,
             'support' => $settings['support'] ?? [],
-            'freeDeliveryOmr' => $settings['free_delivery_threshold_omr'] ?? 35,
+            'freeDeliveryOmr' => $settings['free_delivery_threshold_omr'] ?? 40,
         ]);
     }
 
@@ -28,7 +28,24 @@ class StoreInfoController
         return view('storefront.support', [
             'locale' => $locale,
             'support' => $settings['support'] ?? [],
-            'freeDeliveryOmr' => $settings['free_delivery_threshold_omr'] ?? 35,
+            'freeDeliveryOmr' => $settings['free_delivery_threshold_omr'] ?? 40,
+        ]);
+    }
+
+    public function page(string $locale, string $slug): View
+    {
+        App::setLocale($locale);
+        $pages = __('store.legal_pages');
+        abort_unless(is_array($pages) && isset($pages[$slug]), 404);
+
+        $settings = StorefrontSettings::all();
+
+        return view('storefront.policy', [
+            'locale' => $locale,
+            'slug' => $slug,
+            'page' => $pages[$slug],
+            'support' => $settings['support'] ?? [],
+            'freeDeliveryOmr' => $settings['free_delivery_threshold_omr'] ?? 40,
         ]);
     }
 

@@ -164,7 +164,42 @@ class StorefrontTest extends TestCase
             ] as $routeName) {
                 $this->get(route($routeName, ['locale' => $locale]))->assertOk();
             }
+
+            foreach ([
+                'about-us',
+                'authenticity',
+                'shipping-delivery',
+                'returns-refunds',
+                'faq',
+                'privacy-policy',
+                'terms-of-use',
+                'cookie-policy',
+                'disclaimer',
+            ] as $pageSlug) {
+                $this->get(route('store.page', ['locale' => $locale, 'slug' => $pageSlug]))->assertOk();
+            }
         }
+    }
+
+    public function test_footer_displays_social_handles_and_ecommerce_sections(): void
+    {
+        $this->get('/en')
+            ->assertOk()
+            ->assertSee('https://www.facebook.com/MuscatFragrances', false)
+            ->assertSee('https://www.instagram.com/MuscatFragrances', false)
+            ->assertSee('https://www.tiktok.com/@MuscatFragrances', false)
+            ->assertSee('https://x.com/MuscatFragrances', false)
+            ->assertSee('Follow @MuscatFragrances')
+            ->assertSee('Privacy Policy')
+            ->assertSee('Terms of Use')
+            ->assertSee('Shipping &amp; Delivery', false)
+            ->assertSee('Returns &amp; Refunds', false);
+
+        $this->get('/ar')
+            ->assertOk()
+            ->assertSee('https://www.facebook.com/MuscatFragrances', false)
+            ->assertSee('سياسة الخصوصية')
+            ->assertSee('شروط الاستخدام');
     }
 
     public function test_admin_can_update_storefront_announcement_without_modifying_source(): void

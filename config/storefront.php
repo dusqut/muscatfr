@@ -19,6 +19,17 @@ return [
         'store_hours_en' => 'Saturday – Thursday: 10:00 AM – 10:00 PM · Friday: 4:00 PM – 10:30 PM',
         'store_hours_ar' => 'السبت – الخميس: ١٠:٠٠ صباحاً – ١٠:٠٠ مساءً · الجمعة: ٤:٠٠ عصراً – ١٠:٣٠ مساءً',
     ],
+    'social' => [
+        'handle' => 'MuscatFragrances',
+        'links' => [
+            ['key' => 'facebook', 'label' => 'Facebook', 'url' => 'https://www.facebook.com/MuscatFragrances'],
+            ['key' => 'instagram', 'label' => 'Instagram', 'url' => 'https://www.instagram.com/MuscatFragrances'],
+            ['key' => 'tiktok', 'label' => 'TikTok', 'url' => 'https://www.tiktok.com/@MuscatFragrances'],
+            ['key' => 'x', 'label' => 'X', 'url' => 'https://x.com/MuscatFragrances'],
+            ['key' => 'youtube', 'label' => 'YouTube', 'url' => 'https://www.youtube.com/@MuscatFragrances'],
+            ['key' => 'snapchat', 'label' => 'Snapchat', 'url' => 'https://www.snapchat.com/add/MuscatFragrances'],
+        ],
+    ],
     'seasonal_gifts' => [
         'eid' => (bool) env('STORE_GIFTS_EID', false),
         'ramadan' => (bool) env('STORE_GIFTS_RAMADAN', false),

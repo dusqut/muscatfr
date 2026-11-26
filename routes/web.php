@@ -87,5 +87,18 @@ Route::middleware(RequireLaunchAccess::class)->group(function (): void {
             Route::get('/account', [StoreInfoController::class, 'account'])->name('store.account');
             Route::get('/wishlist', [StoreInfoController::class, 'wishlist'])->name('store.wishlist');
             Route::get('/bag', [StoreInfoController::class, 'bag'])->name('store.bag');
+            Route::get('/pages/{slug}', [StoreInfoController::class, 'page'])
+                ->whereIn('slug', [
+                    'about-us',
+                    'authenticity',
+                    'shipping-delivery',
+                    'returns-refunds',
+                    'faq',
+                    'privacy-policy',
+                    'terms-of-use',
+                    'cookie-policy',
+                    'disclaimer',
+                ])
+                ->name('store.page');
         });
 });

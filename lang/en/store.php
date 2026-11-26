@@ -143,8 +143,106 @@ return [
         'signature' => 'With care, Muscat Fragrances',
     ],
     'footer' => [
-        'tagline' => 'A considered approach to fragrance.',
+        'tagline' => 'A considered approach to fragrance, shaped by the spirit of Muscat and Oman.',
+        'follow_us' => 'Follow @:handle',
+        'social_aria_label' => 'Muscat Fragrances social media',
+        'shop_title' => 'Shop',
+        'care_title' => 'Customer Care',
+        'company_title' => 'Our House',
+        'legal_title' => 'Legal & Policies',
+        'shipping_delivery' => 'Shipping & Delivery',
+        'returns_refunds' => 'Returns & Refunds',
+        'faq' => 'FAQs',
+        'about_us' => 'About Us',
+        'authenticity' => 'Authenticity Guarantee',
+        'privacy_policy' => 'Privacy Policy',
+        'terms_of_use' => 'Terms of Use',
+        'cookie_policy' => 'Cookie Policy',
+        'disclaimer' => 'Disclaimer',
         'copyright' => '© :year Muscat Fragrances. All rights reserved.',
         'location' => 'Muscat, Sultanate of Oman',
+    ],
+    'legal_pages' => [
+        'about-us' => [
+            'eyebrow' => 'OUR HOUSE',
+            'title' => 'About Muscat Fragrances',
+            'summary' => 'Muscat Fragrances is an Oman-based fragrance retailer curating signature Arabian oud, frankincense compositions, and international perfumery.',
+            'sections' => [
+                ['heading' => 'Rooted in Muscat', 'body' => 'Inspired by Oman’s heritage of frankincense and hospitality, we bring together thoughtful scent curation with modern service across Muscat, the Sultanate of Oman, and the wider GCC.'],
+                ['heading' => 'Our Promise', 'body' => 'Every fragrance in our catalogue is sourced through authorized distributors and brand houses, stored in climate-controlled facilities, and presented with transparent pricing in Omani Rial (OMR).'],
+            ],
+        ],
+        'authenticity' => [
+            'eyebrow' => 'QUALITY ASSURANCE',
+            'title' => '100% Authentic Fragrances',
+            'summary' => 'We guarantee that every bottle, attar, and gift set sold by Muscat Fragrances is 100% genuine and original.',
+            'sections' => [
+                ['heading' => 'Authorized Sourcing', 'body' => 'We never sell testers presented as retail stock, counterfeits, or grey-market refills. Every item arrives sealed in original manufacturer packaging.'],
+                ['heading' => 'Climate-Controlled Storage', 'body' => 'Oman’s warm climate demands careful storage. Our Muscat inventory is held at controlled temperatures away from direct sunlight to preserve top, heart, and base notes.'],
+            ],
+        ],
+        'shipping-delivery' => [
+            'eyebrow' => 'CUSTOMER CARE',
+            'title' => 'Shipping & Delivery',
+            'summary' => 'Reliable fragrance delivery across Muscat, all Oman governorates, and regional GCC destinations.',
+            'sections' => [
+                ['heading' => 'Muscat & Oman Delivery', 'body' => 'Orders across Muscat above OMR 40 qualify for complimentary delivery. Standard delivery across Oman governorates is dispatched via vetted fragrance-safe couriers.'],
+                ['heading' => 'Protective Packaging', 'body' => 'Each bottle is cushioned in protective packaging so glass flacons arrive intact regardless of distance.'],
+            ],
+        ],
+        'returns-refunds' => [
+            'eyebrow' => 'CUSTOMER CARE',
+            'title' => 'Returns & Refunds',
+            'summary' => 'Clear return eligibility for unopened fragrances and damaged-in-transit items.',
+            'sections' => [
+                ['heading' => 'Eligibility Window', 'body' => 'Unopened, unused products in original sealed cellophane packaging may be returned within 7 days of delivery with proof of purchase.'],
+                ['heading' => 'Damaged or Incorrect Items', 'body' => 'If your parcel arrives damaged or incorrect, contact our Muscat support team within 48 hours for a prompt replacement or refund in OMR.'],
+            ],
+        ],
+        'faq' => [
+            'eyebrow' => 'HELP CENTRE',
+            'title' => 'Frequently Asked Questions',
+            'summary' => 'Answers to common questions about ordering, delivery in Oman, and fragrance care.',
+            'sections' => [
+                ['heading' => 'What currency are prices shown in?', 'body' => 'All retail prices are displayed and settled in Omani Rial (OMR) to 3 decimal places (Baisa precision).'],
+                ['heading' => 'Are all fragrances genuine?', 'body' => 'Yes. Every perfume, oud oil, and gift set is 100% authentic in original sealed packaging.'],
+            ],
+        ],
+        'privacy-policy' => [
+            'eyebrow' => 'LEGAL & POLICIES',
+            'title' => 'Privacy Policy',
+            'summary' => 'How Muscat Fragrances collects, protects, and uses customer information.',
+            'sections' => [
+                ['heading' => 'Information We Collect', 'body' => 'We collect only the contact, delivery, and order information required to fulfil purchases, respond to enquiries, and maintain storefront security.'],
+                ['heading' => 'Data Protection & Security', 'body' => 'Sessions and communications are encrypted over HTTPS. We never sell or rent customer contact details to third parties.'],
+            ],
+        ],
+        'terms-of-use' => [
+            'eyebrow' => 'LEGAL & POLICIES',
+            'title' => 'Terms of Use',
+            'summary' => 'Terms governing access to and purchases from the Muscat Fragrances online store.',
+            'sections' => [
+                ['heading' => 'Pricing & Availability', 'body' => 'All prices are listed in OMR and are subject to stock availability. We reserve the right to correct typographical errors before order confirmation.'],
+                ['heading' => 'Intellectual Property', 'body' => 'All original editorial copy, layouts, and Muscat Fragrances branding are protected and may not be reproduced without written permission.'],
+            ],
+        ],
+        'cookie-policy' => [
+            'eyebrow' => 'LEGAL & POLICIES',
+            'title' => 'Cookie Policy',
+            'summary' => 'Information on essential cookies used for language preference, security, and shopping sessions.',
+            'sections' => [
+                ['heading' => 'Essential Cookies', 'body' => 'We use encrypted session and CSRF security cookies to remember your English or Arabic preference and keep form submissions secure.'],
+                ['heading' => 'Managing Cookies', 'body' => 'You can clear or restrict cookies in your browser settings at any time; disabling essential cookies may affect session features.'],
+            ],
+        ],
+        'disclaimer' => [
+            'eyebrow' => 'LEGAL & POLICIES',
+            'title' => 'Disclaimer',
+            'summary' => 'General product representation, fragrance note perception, and allergy notice.',
+            'sections' => [
+                ['heading' => 'Fragrance & Skin Sensitivity', 'body' => 'Scent projection and longevity vary by skin chemistry and climate. Review ingredient lists or patch-test before full application if you have sensitivities.'],
+                ['heading' => 'Product Imagery', 'body' => 'Bottle packaging and outer box designs may reflect updated manufacturer releases while preserving identical authentic formulation.'],
+            ],
+        ],
     ],
 ];

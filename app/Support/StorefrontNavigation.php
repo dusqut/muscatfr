@@ -42,7 +42,8 @@ class StorefrontNavigation
                 'url' => $announcementUrl,
             ],
             'support' => $settings['support'] ?? [],
-            'free_delivery_omr' => $settings['free_delivery_threshold_omr'] ?? 35,
+            'social' => $settings['social'] ?? config('storefront.social', []),
+            'free_delivery_omr' => $settings['free_delivery_threshold_omr'] ?? 40,
             'shop' => [
                 'genders' => $catalog['genders'],
                 'types' => $catalog['types'],
