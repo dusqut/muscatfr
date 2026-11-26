@@ -10,7 +10,7 @@ return [
     ],
     'free_delivery_threshold_omr' => (float) env('STORE_FREE_DELIVERY_OMR', 40),
     'support' => [
-        'whatsapp_number' => env('STORE_WHATSAPP_NUMBER', '+96800000000'),
+        'whatsapp_number' => env('STORE_WHATSAPP_NUMBER', '+96871826515'),
         'email' => env('STORE_SUPPORT_EMAIL', 'care@muscatfragrances.com'),
         'store_name_en' => 'Muscat Fragrances Boutique',
         'store_name_ar' => 'بوتيك مسقط للعطور',

@@ -105,7 +105,7 @@ class WorkspaceController
             ],
             'free_delivery_threshold_omr' => (float) $validated['free_delivery_threshold_omr'],
             'support' => [
-                'whatsapp_number' => $validated['whatsapp_number'] ?? '+96800000000',
+                'whatsapp_number' => $validated['whatsapp_number'] ?? '+96871826515',
             ],
             'seasonal_gifts' => [
                 'eid' => (bool) ($validated['gifts_eid'] ?? false),

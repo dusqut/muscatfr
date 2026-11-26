@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAccountController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
@@ -24,6 +25,14 @@ Route::prefix('admin')->name('admin.')->group(function (): void {
         Route::redirect('/', '/admin/dashboard')->name('home');
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/dashboard/notifications', [DashboardController::class, 'notifications'])->name('dashboard.notifications');
+        Route::get('/search', [AdminAccountController::class, 'search'])->name('search');
+
+        Route::get('/account/profile', [AdminAccountController::class, 'profile'])->name('account.profile');
+        Route::put('/account/profile', [AdminAccountController::class, 'updateProfile'])->name('account.profile.update');
+        Route::get('/account/password', [AdminAccountController::class, 'password'])->name('account.password');
+        Route::put('/account/password', [AdminAccountController::class, 'updatePassword'])->name('account.password.update');
+        Route::get('/account/preferences', [AdminAccountController::class, 'preferences'])->name('account.preferences');
+        Route::put('/account/preferences', [AdminAccountController::class, 'updatePreferences'])->name('account.preferences.update');
 
         Route::resource('products', ProductController::class)->except(['show']);
 

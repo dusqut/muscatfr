@@ -10,10 +10,20 @@
         </header>
 
         <div class="sf-info-grid">
+            @php
+                $waNumber = $support['whatsapp_number'] ?? '+96871826515';
+                $waDigits = preg_replace('/\D+/', '', (string) $waNumber);
+            @endphp
             <article class="sf-info-card">
                 <h2>{{ __('store.pages.whatsapp_concierge') }}</h2>
-                <p>{{ $support['whatsapp_number'] ?? '+96800000000' }}</p>
-                <p>{{ $support['email'] ?? 'care@muscatfragrances.com' }}</p>
+                <p>
+                    <a class="text-link" href="https://wa.me/{{ $waDigits }}" target="_blank" rel="noopener noreferrer">
+                        {{ $waNumber }}
+                    </a>
+                </p>
+                <p>
+                    <a href="mailto:{{ $support['email'] ?? 'care@muscatfragrances.com' }}">{{ $support['email'] ?? 'care@muscatfragrances.com' }}</a>
+                </p>
             </article>
             <article class="sf-info-card">
                 <h2>{{ __('store.navigation.currency_label', ['currency' => 'OMR']) }}</h2>

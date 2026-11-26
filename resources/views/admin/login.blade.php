@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="googlebot" content="noindex, nofollow, noarchive">
     <meta name="theme-color" content="#f5f1e9">
     <title>{{ __('admin.login_title') }} — Muscat Fragrances</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -12,7 +13,6 @@
     <main class="admin-login-card">
         <a class="admin-brand" href="/">
             <span>MUSCAT FRAGRANCES</span>
-            <small>{{ __('admin.admin_label') }}</small>
         </a>
         <h1>{{ __('admin.login_title') }}</h1>
         <p>{{ __('admin.login_message') }}</p>

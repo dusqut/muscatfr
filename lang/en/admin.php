@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'admin_label' => 'Catalog administration',
-    'login_title' => 'Administrator sign in',
-    'login_message' => 'Sign in to manage products and sample catalog data.',
+    'admin_label' => 'Staff Portal',
+    'login_title' => 'Portal Sign In',
+    'login_message' => 'Enter your credentials to access your workspace.',
     'email' => 'Email address',
     'password' => 'Password',
     'login' => 'Sign in',

@@ -208,6 +208,73 @@ class AdminCatalogTest extends TestCase
         $this->assertDatabaseHas('product_variants', ['sku' => 'DEMO-OU-30', 'stock_on_hand' => 0, 'is_active' => false]);
     }
 
+    public function test_admin_login_is_discreet_and_blocked_from_search_indexing(): void
+    {
+        $response = $this->get(route('admin.login'));
+
+        $response->assertOk()
+            ->assertHeader('X-Robots-Tag', 'noindex, nofollow, noarchive')
+            ->assertSee('noindex, nofollow, noarchive')
+            ->assertSee('Portal Sign In')
+            ->assertDontSee('Administrator sign in')
+            ->assertDontSee('Catalog administration');
+    }
+
+    public function test_admin_header_search_and_account_pages_work(): void
+    {
+        $this->seed(CatalogSampleSeeder::class);
+        $admin = $this->user('admin');
+
+        $this->actingAs($admin)
+            ->get(route('admin.dashboard'))
+            ->assertOk()
+            ->assertSee('MUSCAT FRAGRANCES')
+            ->assertSee('ADMIN')
+            ->assertSee('Search orders, products, customers...')
+            ->assertSee('View Storefront')
+            ->assertSee('My Profile')
+            ->assertSee('Change Password')
+            ->assertSee('Account Preferences')
+            ->assertSee('Sign Out')
+            ->assertDontSee('Catalog administration');
+
+        $this->actingAs($admin)
+            ->getJson(route('admin.search', ['q' => 'Demo']))
+            ->assertOk()
+            ->assertJsonFragment(['title' => 'Demo Oud 01']);
+
+        $this->actingAs($admin)
+            ->get(route('admin.account.profile'))
+            ->assertOk();
+
+        $this->actingAs($admin)
+            ->put(route('admin.account.profile.update'), [
+                'name' => 'Muscat Manager',
+                'email' => $admin->email,
+            ])
+            ->assertRedirect(route('admin.account.profile'));
+
+        $this->assertDatabaseHas('users', [
+            'id' => $admin->id,
+            'name' => 'Muscat Manager',
+        ]);
+
+        $this->actingAs($admin)
+            ->put(route('admin.account.password.update'), [
+                'current_password' => 'catalog-test-password',
+                'password' => 'new-strong-password-123',
+                'password_confirmation' => 'new-strong-password-123',
+            ])
+            ->assertRedirect(route('admin.account.password'));
+
+        $this->actingAs($admin)
+            ->put(route('admin.account.preferences.update'), [
+                'sidebar_default' => 'collapsed',
+                'open_new_tab_storefront' => '1',
+            ])
+            ->assertRedirect(route('admin.account.preferences'));
+    }
+
     private function user(string $role): User
     {
         return User::query()->create([

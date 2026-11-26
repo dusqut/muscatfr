@@ -17,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('admin.layout', function ($view): void {
-            $view->with('adminNavigation', AdminNavigation::sidebar());
+            $counts = AdminNavigation::counts();
+            $view->with('adminNavigation', AdminNavigation::sidebar($counts));
+            $view->with('adminUnreadCount', $counts['tasks_count'] ?? 0);
         });
 
         View::composer('storefront.*', function ($view): void {

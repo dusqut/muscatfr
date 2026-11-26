@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 class AdminAuthController
 {
-    public function showLogin(): View
+    public function showLogin(): Response
     {
-        return view('admin.login');
+        return response()
+            ->view('admin.login')
+            ->header('X-Robots-Tag', 'noindex, nofollow, noarchive')
+            ->header('Cache-Control', 'no-store, private');
     }
 
     public function login(Request $request): RedirectResponse

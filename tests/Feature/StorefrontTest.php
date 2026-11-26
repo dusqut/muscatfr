@@ -200,6 +200,12 @@ class StorefrontTest extends TestCase
             ->assertSee('https://www.facebook.com/MuscatFragrances', false)
             ->assertSee('سياسة الخصوصية')
             ->assertSee('شروط الاستخدام');
+
+        $this->get('/en/support')
+            ->assertOk()
+            ->assertSee('+96871826515')
+            ->assertSee('https://wa.me/96871826515')
+            ->assertDontSee('96800000000');
     }
 
     public function test_admin_can_update_storefront_announcement_without_modifying_source(): void

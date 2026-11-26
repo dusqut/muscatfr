@@ -12,6 +12,9 @@ class EnsureCatalogAdmin
     {
         abort_unless($request->user()?->canManageCatalog(), 403);
 
-        return $next($request);
+        $response = $next($request);
+        $response->headers->set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+
+        return $response;
     }
 }

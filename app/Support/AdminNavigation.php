@@ -18,9 +18,9 @@ class AdminNavigation
      *
      * @return array<int, array<string, mixed>>
      */
-    public static function sidebar(): array
+    public static function sidebar(?array $counts = null): array
     {
-        $counts = self::counts();
+        $counts ??= self::counts();
         $currentRoute = Route::currentRouteName();
         $currentParams = Route::current()?->parameters() ?? [];
 

@@ -46,7 +46,7 @@
                 </div>
                 <div class="admin-field">
                     <label for="whatsapp_number">WhatsApp Concierge Number</label>
-                    <input id="whatsapp_number" name="whatsapp_number" value="{{ old('whatsapp_number', $settings['support']['whatsapp_number'] ?? '') }}" placeholder="+96890000000">
+                    <input id="whatsapp_number" name="whatsapp_number" value="{{ old('whatsapp_number', $settings['support']['whatsapp_number'] ?? '') }}" placeholder="+96871826515">
                 </div>
                 <label class="admin-checkbox">
                     <input type="checkbox" name="gifts_eid" value="1" @checked((bool) old('gifts_eid', $settings['seasonal_gifts']['eid'] ?? false))>
